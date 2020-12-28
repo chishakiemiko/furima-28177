@@ -25,33 +25,40 @@ Things you may want to cover:
 
 ## users テーブル
 
-| Column    | Type   | Options     |
-| --------  | ------ | ----------- |
-| nickname  | string | null: false |
-| e-mail    | string | null: false |
-| password  | string | null: false |
-| user_name | string | null: false |
-
+| Column                | Type   | Options                  |
+| ------------------    | ------ | ------------------------ | 
+| nickname              | string | null: false              |
+| e_mail                | string | null: false, unique: true|
+| encrypted_password    | string | null: false              |
+| user_name             | string | null: false              |
+| first_name            | string | null: false              |
+| famiry_name           | string | null: false              |
+| first_name_kana       | string | null: false              |
+| famiry_name_kana      | string | null: false              |
+| birth_year            | date   | null: false              |
+| birth_month           | date   | null: false              |
+| birth_day             | date   | null: false              |     
 ### Association
 
 - has_many :items
-- has_many :credit_card
+- has_one  :orders
 
 
 ##  items テーブル
 
-| Column              | Type    | Options     |
-| ------------------- | ------  | ----------- |
-| items_image         |  text   | null: false |
-| items_name          | string  | null: false |
-| items_information   | string  | null: false |
-| items_categoly      | string  | null: false |
-| items_deriveryprise | string  | null: false |
-| items_prise         | integer | null: false |
-|
+| Column                 | Type    | Options                      |
+| -------------------    | ------  | ---------------------------- |
+| information            |  text   | null: false                  |
+| name                   | string  | null: false                  |
+| category_id            | integer | null: false                  |
+| shipping_fee_burden_id | integer | null: false                  |
+| price                  | string  | null: false                  |
+| shipping_area_id       | integer | null: false                  |
+| day_to_ship_id         | string  | null: false                  |
+| user_id                | integer | null: false,foreign_key: true|
 
 ### Association
-- belongs_to :users
+- belongs_to :user
 - has_one    :haisousaki
 
 
@@ -59,23 +66,27 @@ Things you may want to cover:
 
 | Column              | Type       | Options                        |
 | ------------------- | ---------- | ------------------------------ |
-| haisousaki_adress   | string     | null: false                    |
-| haisou_tel          | string     | null: false                    |
-| users_id            | references | null: false, foreign_key: true |
+| postal_code         | integer    | null: false                    |
+| prefectures         | string     | null: false                    |
+| municipalities      | references | null: false, foreign_key: true |
+| address             | string     | null: false                    |
+| building_name       | string     | null: false                    |
+| telephone           | integer    | null: false,unique: ture       |
+| order_id            | integer    | null: false,foreign_key: true  |
 
 ### Association
 
-- has_one  : items
+- belongs_to : item
+- belongs_to : order
 
-## credit_card テーブル
+## orders テーブル
 
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
-| card_number     |  integer   | null: false                    |
-| kigen           |  date      | null: false                    |
-| security_code   |  integer   | null: false                    |
-| user_id         | references | null: false, foreign_key: true |
+| item_id         | integer    | null: false, foreign_key: true |                   |
+| user_id         | integer    | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :users
+- belongs_to :user
+- has_one :haisousaki
