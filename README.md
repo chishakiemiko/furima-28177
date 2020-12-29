@@ -82,7 +82,6 @@ Things you may want to cover:
 | --------------------- | ---------- | ------------------------------ |
 | item_id               | integer    | null: false, foreign_key: true |
 | user_id               | integer    | null: false, foreign_key: true |
-| shipping_id           | integer    | null: false, foreign_key: true |
 
 
 
@@ -90,4 +89,3 @@ Things you may want to cover:
 
 - belongs_to :user
 - belongs_to :item
-- has_one : shipping
