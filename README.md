@@ -28,7 +28,7 @@ Things you may want to cover:
 | Column                | Type   | Options                  |
 | ------------------    | ------ | ------------------------ | 
 | nickname              | string | null: false              |
-| email                | string | null: false, unique: true|
+| email                 | string | null: false, unique: true|
 | encrypted_password    | string | null: false              |
 | first_name            | string | null: false              |
 | famiry_name           | string | null: false              |
@@ -47,7 +47,7 @@ Things you may want to cover:
 | -------------------    | ------  | ---------------------------- |
 | information            |  text   | null: false                  |
 | name                   | string  | null: false                  |
-| product_status         | integer | null: false                  |
+| product_status_id      | integer | null: false                  |
 | category_id            | integer | null: false                  |
 | shipping_fee_burden_id | integer | null: false                  |
 | price                  | integer | null: false                  |
@@ -69,7 +69,7 @@ Things you may want to cover:
 | municipalities      | string     | null: false                    |
 | address             | string     | null: false                    |
 | building_name       | string     |                                |
-| telephone           | integer    | null: false,unique: ture       |
+| telephone           | string     | null: false,unique             |
 | order_id            | integer    | null: false,foreign_key: true  |
 
 ### Association
@@ -82,6 +82,7 @@ Things you may want to cover:
 | --------------------- | ---------- | ------------------------------ |
 | item_id               | integer    | null: false, foreign_key: true |
 | user_id               | integer    | null: false, foreign_key: true |
+| shipping_id           | integer    | null: false, foreign_key: true |
 
 
 
@@ -89,3 +90,4 @@ Things you may want to cover:
 
 - belongs_to :user
 - belongs_to :item
+- has_one : shipping
