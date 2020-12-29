@@ -28,7 +28,7 @@ Things you may want to cover:
 | Column                | Type   | Options                  |
 | ------------------    | ------ | ------------------------ | 
 | nickname              | string | null: false              |
-| e_mail                | string | null: false, unique: true|
+| email                | string | null: false, unique: true|
 | encrypted_password    | string | null: false              |
 | first_name            | string | null: false              |
 | famiry_name           | string | null: false              |
@@ -57,10 +57,10 @@ Things you may want to cover:
 
 ### Association
 - belongs_to :user
-- has_one    :orders
+- has_one    :order
 
 
-## haisousaki テーブル
+## shipping テーブル
 
 | Column              | Type       | Options                        |
 | ------------------- | ---------- | ------------------------------ |
@@ -82,11 +82,10 @@ Things you may want to cover:
 | --------------------- | ---------- | ------------------------------ |
 | item_id               | integer    | null: false, foreign_key: true |
 | user_id               | integer    | null: false, foreign_key: true |
-| haisousaki_id         | integer    | null: false, foreign_key: true |
+
 
 
 ### Association
 
 - belongs_to :user
-- has_one :haisousaki
 - belongs_to :item
