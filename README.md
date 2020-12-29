@@ -89,4 +89,4 @@ Things you may want to cover:
 
 - belongs_to :user
 - has_one :haisousaki
-- has_meny :user_id 
+- belongs_to :item
