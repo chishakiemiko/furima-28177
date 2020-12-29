@@ -38,7 +38,7 @@ Things you may want to cover:
 ### Association
 
 - has_many :items
-- has_one  :orders
+- has_many :orders
 
 
 ##  items テーブル
@@ -47,16 +47,17 @@ Things you may want to cover:
 | -------------------    | ------  | ---------------------------- |
 | information            |  text   | null: false                  |
 | name                   | string  | null: false                  |
+| product_status         | integer | null: false                  |
 | category_id            | integer | null: false                  |
 | shipping_fee_burden_id | integer | null: false                  |
 | price                  | integer | null: false                  |
-| prefectures            | integer | null: false                  |
+| prefecture_id          | integer | null: false                  |
 | day_to_ship_id         | integer | null: false                  |
 | user_id                | integer | null: false,foreign_key: true|
 
 ### Association
 - belongs_to :user
-- has_one    :haisousaki
+- has_one    :orders
 
 
 ## haisousaki テーブル
@@ -64,7 +65,7 @@ Things you may want to cover:
 | Column              | Type       | Options                        |
 | ------------------- | ---------- | ------------------------------ |
 | postal_code         | string     | null: false                    |
-| prefectures         | string     | null: false                    |
+| prefecture_id       | integer    | null: false                    |
 | municipalities      | string     | null: false                    |
 | address             | string     | null: false                    |
 | building_name       | string     |                                |
@@ -73,17 +74,19 @@ Things you may want to cover:
 
 ### Association
 
-- belongs_to : item
 - belongs_to : order
 
 ## orders テーブル
 
-| Column          | Type       | Options                        |
-| --------------- | ---------- | ------------------------------ |
-| item_id         | integer    | null: false, foreign_key: true |                   |
-| user_id         | integer    | null: false, foreign_key: true |
+| Column                | Type       | Options                        |
+| --------------------- | ---------- | ------------------------------ |
+| item_id               | integer    | null: false, foreign_key: true |
+| user_id               | integer    | null: false, foreign_key: true |
+| haisousaki_id         | integer    | null: false, foreign_key: true |
+
 
 ### Association
 
 - belongs_to :user
 - has_one :haisousaki
+- has_meny :user_id 
