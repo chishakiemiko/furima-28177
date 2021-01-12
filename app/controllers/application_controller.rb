@@ -1,13 +1,13 @@
 class ApplicationController < ActionController::Base
   
   before_action :basic_auth
-  before_action :authenticate_user!,expect: :index
+  # before_action :authenticate_user!,expect: :index
   before_action :configure_permitted_parameters, if: :devise_controller?
   
   private
    def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_in, keys: [:nickname, :email])
     devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :email, :first_name, :family_name, :first_name_kana, :family_name_kana, :birth_date])
-    devise_parameter_sanitizer.permit(:sign_in, keys: [:nickname, :email, :first_name, :family_name, :first_name_kana, :family_name_kana, :birth_date])
     devise_parameter_sanitizer.permit(:accout_update, keys: [:nickname, :email, :first_name, :family_name, :first_name_kana, :family_name_kana, :birth_date])
   end 
 
