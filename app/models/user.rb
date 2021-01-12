@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :nickname, :family_name, :first_name, :family_name_kana, :first_name_kana,:birth_date, presence: true #空では登録できない
-  
+  validates :email,:password,:password_confirmation, presence: true 
   
 
   with_options presence: true do
