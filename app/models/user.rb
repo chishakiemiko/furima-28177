@@ -4,10 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :nickname, :family_name, :first_name, :family_name_kana, :first_name_kana, :birth_date, presence: true # 空では登録できない
-  validates :email, :password, :password_confirmation, presence: true
+  
 
   with_options presence: true do
+    # 空では登録できない
+    validates :nickname, :family_name, :first_name, :family_name_kana, :first_name_kana, :birth_date, presence: true 
     # ひらがな、カタカナ、漢字のみ許可する
     validates :family_name, :first_name, format: { with: /\A[ぁ-んァ-ヶ一-龥々]/ }
     validates :family_name_kana, :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/ }
