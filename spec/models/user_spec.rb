@@ -9,11 +9,6 @@ RSpec.describe User, type: :model do
       it "全ての項目が入力された時に登録できる" do
        expect(@user).to be_valid
        end
-      it "passwordが6文字以上であれば登録できる" do
-        @user.password = "abcd5678"
-        @user.password_confirmation = "abcd5678"
-        expect(@user).to be_valid 
-      end
     end
     context '新規登録できない時' do
       it 'passwordが6文字以下では登録できない' do
@@ -88,6 +83,21 @@ RSpec.describe User, type: :model do
         @user.password = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Password can't be blank")
+      end
+      it 'passwordに＠を含まない場合は登録できない' do
+        @user.password = 'asdfga'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password", "Password is invalid")
+      end
+      it 'passwordが数字のみでは登録できない' do
+        @user.password = '111111'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password", "Password is invalid")
+      end
+        it 'passwordが英字のみでは登録できない' do
+         @user.password = 'aaaaaa'
+         @user.valid?
+         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password", "Password is invalid")
       end
       it 'passwordが存在してもpassword_confirmationが空では登録できない' do
         @user.password_confirmation = ''
