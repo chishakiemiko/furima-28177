@@ -84,10 +84,10 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password can't be blank")
       end
-      it 'passwordに＠を含まない場合は登録できない' do
-        @user.password = 'asdfga'
+      it 'emailに＠を含まない場合は登録できない' do
+        @user.email = 'asdfga'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password", "Password is invalid")
+        expect(@user.errors.full_messages).to include("Email is invalid")
       end
       it 'passwordが数字のみでは登録できない' do
         @user.password = '111111'
