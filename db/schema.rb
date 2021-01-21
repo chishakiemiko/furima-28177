@@ -10,12 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_29_020002) do
+ActiveRecord::Schema.define(version: 2021_01_21_041103) do
 
   create_table "furimas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "text"
     t.text "image"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "information"
+    t.string "name"
+    t.integer "product_status_id"
+    t.integer "category_id"
+    t.integer "shipping_fee_burden_id"
+    t.integer "price"
+    t.integer "prefecture_id"
+    t.integer "day_to_ship_id"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
